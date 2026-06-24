@@ -42,11 +42,22 @@ export async function RegisterUser(email: string, password: string, first_name: 
         })
     });
     if (response.status == 400) {
-        console.log(response);
-        throw new Error("Error occured. ")
+        let errorMsg = "Error occured. ";
+        try {
+            const errData = await response.json();
+            errorMsg = Object.values(errData).flat().join(', ');
+        } catch (e) {
+            // keep default
+        }
+        throw new Error(errorMsg)
     }
     if (!response.ok) {
-        throw new Error('Error occured');
+        let errorMsg = "Error occured. ";
+        try {
+            const errData = await response.json();
+            errorMsg = errData.detail || errData.message || errorMsg;
+        } catch (e) {}
+        throw new Error(errorMsg);
     }
     return response.json();
 }
