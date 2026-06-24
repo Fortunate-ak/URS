@@ -30,14 +30,27 @@ DJANGO_ENV = os.getenv('DJANGO_ENV', 'development')
 DEBUG = DJANGO_ENV != 'production'
 ALLOWED_HOSTS = ['*'] if DEBUG else ['yourdomain.com']
 
+# Automatically add Render's external hostname to ALLOWED_HOSTS
+RENDER_EXTERNAL_HOSTNAME = os.environ.get('RENDER_EXTERNAL_HOSTNAME')
+if RENDER_EXTERNAL_HOSTNAME:
+    ALLOWED_HOSTS.append(RENDER_EXTERNAL_HOSTNAME)
+
+# Get the Vercel frontend URL from the environment
+FRONTEND_URL = os.environ.get('FRONTEND_URL', 'https://yourdomain.com')
+
 # CORS and CSRF settings
 CORS_ALLOW_CREDENTIALS = True
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:8085",
-] if DEBUG else ["https://yourdomain.com"]
+    "http://localhost:5173",
+    FRONTEND_URL
+] if DEBUG else [FRONTEND_URL]
+
 CSRF_TRUSTED_ORIGINS = [
     "http://localhost:8085",
-] if DEBUG else ["https://yourdomain.com"]
+    "http://localhost:5173",
+    FRONTEND_URL
+] if DEBUG else [FRONTEND_URL]
 
 SESSION_COOKIE_SECURE = False if DEBUG else True
 CSRF_COOKIE_SECURE = False if DEBUG else True

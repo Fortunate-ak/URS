@@ -41,7 +41,11 @@ export async function customFetch(url: string, options: RequestInit = {}): Promi
     }
   }
 
-  return fetch(url, options);
+  // Prepend the Render backend URL in production, or use relative locally
+  const apiUrl = import.meta.env.VITE_API_URL || '';
+  const fullUrl = url.startsWith('http') ? url : `${apiUrl}${url}`;
+
+  return fetch(fullUrl, options);
 }
 
 const intervals: { label: string; seconds: number }[] = [
