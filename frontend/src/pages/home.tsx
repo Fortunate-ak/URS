@@ -61,15 +61,15 @@ export default function HomePage() {
 
                     {!currentUser && (
                         <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16">
-                            <Link to="/auth/register" className="tw-button h-11 px-6 text-base shadow-lg shadow-primary/10 hover:shadow-primary/20 transition-all w-full sm:w-auto">
+                            <a href="#get-started" className="tw-button h-11 px-6 text-base shadow-lg shadow-primary/10 hover:shadow-primary/20 transition-all w-full sm:w-auto">
                                 Get Started
-                            </Link>
+                            </a>
                         </div>
                     )}
 
                      {/* Split Selection Section (Simplified) */}
                     {!currentUser && (
-                        <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto text-left hidden">
+                        <div id="get-started" className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto text-left">
                             {/* Applicant Card */}
                             <Link to="/auth/register" className="group relative bg-card hover:bg-secondary/30 border border-border/50 rounded-2xl p-6 transition-all hover:shadow-lg hover:shadow-primary/5">
                                 <div className="relative z-10">

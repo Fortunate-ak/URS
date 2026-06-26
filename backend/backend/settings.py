@@ -56,6 +56,12 @@ SESSION_COOKIE_SECURE = False if DEBUG else True
 CSRF_COOKIE_SECURE = False if DEBUG else True
 CSRF_USE_SESSIONS = False
 CSRF_COOKIE_HTTPONLY = False
+# Allow cross-origin cookies (required for Vercel frontend <-> Render backend)
+SESSION_COOKIE_SAMESITE = 'None'
+CSRF_COOKIE_SAMESITE = 'None'
+# SameSite=None requires Secure=True — always enforce on Render (HTTPS)
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = True
 
 
 

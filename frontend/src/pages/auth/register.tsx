@@ -64,7 +64,7 @@ export default function Register() {
             subtitle="Start your journey with verified credentials."
         >
              {/* Account Type Toggle */}
-             <div className="bg-secondary/50 p-1 rounded-lg flex mb-6 relative border border-border/50 hidden">
+             <div className="bg-secondary/50 p-1 rounded-lg flex mb-6 relative border border-border/50">
                 <button
                     type="button"
                     onClick={() => setAccountType("applicant")}
@@ -123,8 +123,7 @@ export default function Register() {
 
                 {/* Submit */}
                 <button
-                    type="button"
-                    onClick={handleSubmit}
+                    type="submit"
                     disabled={isLoading}
                     className="mt-4 w-full bg-primary hover:bg-primary/90 text-white font-medium py-2.5 rounded-lg shadow-sm hover:shadow-md transition-all disabled:opacity-70 disabled:cursor-not-allowed text-sm"
                 >
